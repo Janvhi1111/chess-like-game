@@ -4,9 +4,6 @@
 🚀 Installation and Setup
 
 To get the game up and running locally, follow these steps:
-
-Clone the repository to your local machine:
-git clone https://github.com/satviksachan0/Hero-s-War
         
 Navigate to the project directory:
 
