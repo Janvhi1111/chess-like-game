@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chess-like Game</title>
+
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        color: #2c3e50;
+        margin: 0;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        color: #1abc9c;
+        font-size: 36px;
+        margin-bottom: 30px;
+      }
+      #rules {
+        background-color: #ecf0f1;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+      }
+      h2 {
+        color: #2980b9;
+        font-size: 28px;
+      }
+      p,
+      ul {
+        font-size: 18px;
+        line-height: 1.6;
+      }
+      strong {
+        color: #e74c3c;
+      }
+      ul {
+        list-style-type: disc;
+        margin-left: 20px;
+      }
+      #game-board {
+        margin-top: 20px;
+      }
+      #game-status {
+        margin-top: 10px;
+        font-size: 20px;
+        text-align: center;
+      }
+      .note {
+        background-color: #fff3cd;
+        color: #856404;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        border: 1px solid #ffeeba;
+      }
+      #game-setup {
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      #game-setup input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        margin-right: 10px;
+      }
+      #game-setup button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #1abc9c;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      #game-setup button:hover {
+        background-color: #16a085;
+      }
+      #player-info {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Chess-like Game</h1>
+
+    <div class="note">
+      <p>
+        <strong>Note:</strong> To play the game, ensure that you open two
+        browser tabs or windows. Each tab will represent a different player in
+        the game. Both tabs need to be connected to the game server
+        simultaneously for the game to function correctly.
+      </p>
+    </div>
+
+    <div id="rules">
+      <h2>Game Rules</h2>
+      <p>
+        <strong>Objective:</strong> Eliminate all of your opponent's pieces.
+      </p>
+      <p>
+        <strong>Setup:</strong> The game is played on a 5x5 grid. Each player
+        controls 5 characters: Pawns, Hero1, Hero2 and Hero3 . Pieces are placed
+        on the first and last rows of the board for each player.
+      </p>
+      <p><strong>Character Movements:</strong></p>
+      <ul>
+        <li>
+          <strong>Pawn (P):</strong> Moves one block in any direction (Left,
+          Right, Forward, or Backward).
+        </li>
+        <li>
+          <strong>Hero1 (H1):</strong> Moves two blocks straight in any
+          direction. Can capture any opponent's piece in its path.
+        </li>
+        <li>
+          <strong>Hero2 (H2):</strong> Moves two blocks diagonally in any
+          direction. Can capture any opponent's piece in its path.
+        </li>
+        <li>
+          <strong>Hero3 (H3):</strong> This hero can move in L shape all
+          directions.It can eliminate opponents piece present in final position
+        </li>
+      </ul>
+      <p>
+        <strong>Turn-Based Play:</strong> Players alternate turns. A move is
+        only valid if it adheres to the character's movement rules and targets
+        an empty cell or an opponent's piece.
+      </p>
+      <p>
+        <strong>Winning:</strong> The game ends when a player has eliminated all
+        of the opponent's pieces. The player who achieves this first is declared
+        the winner.
+      </p>
+      <p>
+        <strong>To Connect:</strong> Player1 clicks on Create game and shares
+        the code with Player2 to join
+      </p>
+    </div>
+
+    <!-- Game Setup -->
+    <div id="game-setup">
+      <input type="text" id="game-id" placeholder="Enter Game ID" />
+      <button onclick="createGame()">Create Game</button>
+      <button onclick="joinGame()">Join Game</button>
+    </div>
+
+    <!-- Player Information -->
+    <div id="player-info">
+      <h3 id="player-designation">Player: Connecting...</h3>
+    </div>
+
+    <div id="game-board"></div>
+    <div id="game-status"></div>
+
+    <script>
+      //game is created here by player 1
+      function createGame() {
+        const gameId = Math.random().toString(36).substr(2, 9);
+        document.getElementById("game-id").value = gameId;
+
+        console.log(`Game created with ID: ${gameId}`);
+      }
+      // function to join the game by player 2
+      function joinGame() {
+        const gameId = document.getElementById("game-id").value;
+        if (gameId) {
+          console.log(`Joining game with ID: ${gameId}`);
+        } else {
+          alert("Please enter a Game ID.");
+        }
+      }
+    </script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
